@@ -1,0 +1,12 @@
+﻿.group {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.access {
+    color: white;
+}
+
+    .access:hover {
+        cursor: pointer;
+    }

@@ -1,0 +1,18 @@
+﻿@using Core.Common;
+@model int
+
+@{
+    ViewBag.Title = "Test";
+}
+
+@Scripts.Render("~/Scripts/Site/Test_" + SessionManager.LoggedInUser.Language.ISO + ".js")
+@Styles.Render("~/Content/Styles/Test.css")
+@Scripts.Render("~/Scripts/Site/angular-autogrow.js")
+@Scripts.Render("~/Scripts/masonry.js")
+@Styles.Render("~/Content/Switcher.css")
+@Styles.Render("~/Content/Checkbox.css")
+@Styles.Render("~/Content/Button.css")
+
+@{
+    Html.RenderPartial("~/Views/Partial/Test_" + SessionManager.LoggedInUser.Language.ISO + ".cshtml", Model);
+}

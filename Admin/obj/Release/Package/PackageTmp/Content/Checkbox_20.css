@@ -1,0 +1,371 @@
+﻿/* левая часть зелёной стрелки */
+@-moz-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 13px;
+    }
+}
+
+@-webkit-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 13px;
+    }
+}
+
+@keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 13px;
+    }
+}
+/* /левая часть зелёной стрелки */
+
+
+/* правая часть зелёной стрелки */
+@keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 23px;
+    }
+}
+
+@-webkit-keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 23px;
+    }
+}
+
+@-moz-keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 23px;
+    }
+}
+/* /правая часть зелёной стрелки */
+
+
+input[type=checkbox] {
+    display: none;
+}
+
+.check-box {
+    /* высота_ширина блока */
+    height:20px;
+    width: 20px;
+    /* /высота_ширина блока */
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 3px;
+    position: relative;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: border-color ease 0.2s;
+    -o-transition: border-color ease 0.2s;
+    -webkit-transition: border-color ease 0.2s;
+    transition: border-color ease 0.2s;
+    cursor: pointer;
+}
+
+    .check-box::before,
+    .check-box::after {
+        /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        height: 0;
+        /* ширина галочки */
+        width: 3px;
+        /* /ширина галочки */
+        background-color: #507299;
+        display: inline-block;
+        -moz-transform-origin: left top;
+        -ms-transform-origin: left top;
+        -o-transform-origin: left top;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        border-radius: 3px;
+        content: ' ';
+        -webkit-transition: opacity ease .5;
+        -moz-transition: opacity ease .5;
+        transition: opacity ease .5;
+    }
+
+    .check-box::before {
+        /* позиция правой галочки */
+        top: 13px;
+        left: 11px;
+        /* /позиция правой галочки */
+        box-shadow: 0 0 0 1.5px #ffffff;
+        -moz-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+    .check-box::after {
+        /* позиция левой галочки */
+        top: 4.5px;
+        left: 1px;
+        /* /позиция левой галочки */
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    input[type=checkbox]:checked + .check-box,
+    .check-box.checked {
+        border-color: #507299;
+    }
+
+        input[type=checkbox]:checked + .check-box::after,
+        .check-box.checked::after {
+            /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+            height: 50px;
+            -moz-animation: dothabottomcheck 0.2s ease 0s forwards;
+            -o-animation: dothabottomcheck 0.2s ease 0s forwards;
+            -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+            animation: dothabottomcheck 0.2s ease 0s forwards;
+        }
+
+        input[type=checkbox]:checked + .check-box::before,
+        .check-box.checked::before {
+            /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+            height: 120px;
+            -moz-animation: dothatopcheck 0.4s ease 0s forwards;
+            -o-animation: dothatopcheck 0.4s ease 0s forwards;
+            -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+            animation: dothatopcheck 0.4s ease 0s forwards;
+        }
+/* 5051 */
+
+
+.check-box1 {
+    /* высота_ширина блока */
+    height: 50px;
+    width: 50px;
+    /* /высота_ширина блока */
+    background-color: transparent;
+    border: 4px solid black;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: border-color ease 0.2s;
+    -o-transition: border-color ease 0.2s;
+    -webkit-transition: border-color ease 0.2s;
+    transition: border-color ease 0.2s;
+    cursor: pointer;
+}
+
+    .check-box1::before,
+    .check-box1::after {
+        /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        height: 0;
+        /* ширина галочки */
+        width: 9px;
+        /* /ширина галочки */
+        background-color: #34b93d;
+        display: inline-block;
+        -moz-transform-origin: left top;
+        -ms-transform-origin: left top;
+        -o-transform-origin: left top;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        border-radius: 3px;
+        content: ' ';
+        -webkit-transition: opacity ease .5;
+        -moz-transition: opacity ease .5;
+        transition: opacity ease .5;
+    }
+
+    .check-box1::before {
+        /* позиция правой галочки */
+        top: 35px;
+        left: 23px;
+        /* /позиция правой галочки */
+        box-shadow: 0 0 0 5px #ffffff;
+        -moz-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+    .check-box1::after {
+        /* позиция левой галочки */
+        top: 16px;
+        left: 4px;
+        /* /позиция левой галочки */
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    input[type=checkbox]:checked + .check-box1,
+    .check-box1.checked {
+        border-color: #34b93d;
+    }
+
+        input[type=checkbox]:checked + .check-box1::after,
+        .check-box1.checked::after {
+            /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+            height: 50px;
+            -moz-animation: dothabottomcheck 0.2s ease 0s forwards;
+            -o-animation: dothabottomcheck 0.2s ease 0s forwards;
+            -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+            animation: dothabottomcheck 0.2s ease 0s forwards;
+        }
+
+        input[type=checkbox]:checked + .check-box1::before,
+        .check-box1.checked::before {
+            /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+            height: 120px;
+            -moz-animation: dothatopcheck 0.4s ease 0s forwards;
+            -o-animation: dothatopcheck 0.4s ease 0s forwards;
+            -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+            animation: dothatopcheck 0.4s ease 0s forwards;
+        }
+/* 5051 */
+
+
+.checkbox2 {
+    /* высота_ширина блока */
+    height: 50px;
+    width: 50px;
+    /* /высота_ширина блока */
+    background-color: transparent;
+    border: 4px solid black;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: border-color ease 0.2s;
+    -o-transition: border-color ease 0.2s;
+    -webkit-transition: border-color ease 0.2s;
+    transition: border-color ease 0.2s;
+    cursor: pointer;
+}
+
+    .checkbox2::before,
+    .checkbox2::after {
+        /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        height: 0;
+        /* ширина галочки */
+        width: 9px;
+        /* /ширина галочки */
+        background-color: #ff0000;
+        display: inline-block;
+        -moz-transform-origin: left top;
+        -ms-transform-origin: left top;
+        -o-transform-origin: left top;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        border-radius: 3px;
+        content: ' ';
+        -webkit-transition: opacity ease .5;
+        -moz-transition: opacity ease .5;
+        transition: opacity ease .5;
+    }
+
+    .checkbox2::before {
+        /* позиция правой галочки */
+        top: 35px;
+        left: 23px;
+        /* /позиция правой галочки */
+        box-shadow: 0 0 0 5px #ffffff;
+        -moz-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+    .checkbox2::after {
+        /* позиция левой галочки */
+        top: 16px;
+        left: 4px;
+        /* /позиция левой галочки */
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    input[type=checkbox]:checked + .checkbox2,
+    .checkbox2.checked {
+        border-color: #ff0000;
+    }
+
+        input[type=checkbox]:checked + .checkbox2::after,
+        .checkbox2.checked::after {
+            /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+            height: 50px;
+            -moz-animation: dothabottomcheck 0.2s ease 0s forwards;
+            -o-animation: dothabottomcheck 0.2s ease 0s forwards;
+            -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+            animation: dothabottomcheck 0.2s ease 0s forwards;
+        }
+
+        input[type=checkbox]:checked + .checkbox2::before,
+        .checkbox2.checked::before {
+            /* очень важное св-во, не забывай его изменять, без этого не будет пахать */
+            height: 120px;
+            -moz-animation: dothatopcheck 0.4s ease 0s forwards;
+            -o-animation: dothatopcheck 0.4s ease 0s forwards;
+            -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+            animation: dothatopcheck 0.4s ease 0s forwards;
+        }
+/* 5051 */

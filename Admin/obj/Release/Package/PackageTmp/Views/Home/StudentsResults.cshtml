@@ -1,0 +1,94 @@
+﻿@*@model int
+@{
+    ViewBag.Title = "StudentsResults";
+}
+@Scripts.Render("~/Scripts/Site/StudentsResults.js")
+@Scripts.Render("~/Scripts/angular-ui/ui-bootstrap-tpls-0.11.0.js")
+@Scripts.Render("~/Scripts/angular-ui/ng-table.min.js")
+@Styles.Render("~/Scripts/angular-ui/ng-table.min.css")
+@Styles.Render("~/Content/Switcher.css")
+@Styles.Render("~/Content/Checkbox.css")
+@Styles.Render("~/Content/Button.css")
+
+<h2>StudentsResults</h2>
+
+<div ng-app="StudentsResults">
+    <div ng-controller="ResultAPIController" ng-init="GetShortResult(@Model)" class="col-md-12">
+        <div ng-if="results.length == 0"> No Results</div>
+        <div ng-if="results.length > 0">
+            <div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search result" ng-model="searchResult">
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">Name</a></td>
+                            <td><a href="#" ng-click="sortType = 'SurName'; sortReverse = !sortReverse">SurName</a></td>
+                            <td><a href="#" ng-click="sortType = 'Points'; sortReverse = !sortReverse">Points</a></td>
+                            <td><a href="#" ng-click="sortType = 'Date'; sortReverse = !sortReverse">Date</a></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="r in results | orderBy:sortType:sortReverse | filter:searchResult | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                            <td>{{r.Name}}</td>
+                            <td>{{ r.SurName }}</td>
+                            <td>{{ r.Points }}</td>
+                            <td>{{ r.Date }}</td>
+                            <td ng-click="GetFullResult(r)" data-toggle="modal" data-target="#fullresult">Details..</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" ng-model="currentPage"></pagination>
+            </div>
+
+            <!-- Modal -->
+            <div id="fullresult" class="modal fade">
+                <div class="modal-dialog" style="width:1000px">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="col-md-12">
+                                <h2>
+                                    <span class="col-md-6">
+                                        Details for:
+                                        <span ng-bind="user.Name"></span>
+                                        <span ng-bind="user.SurName"></span>
+                                    </span>
+
+                                    <span class="col-md-6">
+                                        <span class="pull-right">
+                                            Points:
+                                            <span ng-bind="user.Points"></span> /
+                                            <span ng-bind="user.Evaluation"></span>
+                                        </span>                    
+                                    </span>
+                                </h2>
+                                <div class="clearfix"></div>
+                            </div>                       
+                        </div>
+
+                        <div>
+                            <div class="modal-body">
+                                @Html.Partial("~/Views/Partial/FullResult.cshtml")
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="modal-footer">
+                                <div>
+                                    <div class="pull-right"><button type="button" id="btn_close" class="btn btn-default" data-dismiss="modal">Close</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </div>
+</div>*@
+

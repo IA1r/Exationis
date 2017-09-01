@@ -1,0 +1,20 @@
+﻿@using Core.Common;
+@model int
+
+
+@{
+    ViewBag.Title = "Profile";
+}
+@Scripts.Render("~/Scripts/Site/UserProfile.js")
+@Styles.Render("~/Content/Styles/UserProfile.css")
+@Scripts.Render("~/Scripts/angular-ui/ui-bootstrap-tpls-0.11.0.js")
+@Scripts.Render("~/Scripts/angular-ui/ng-table.min.js")
+@Styles.Render("~/Scripts/angular-ui/ng-table.min.css")
+@Scripts.Render("~/Scripts/loading-bar.js")
+@Styles.Render("~/Content/loading-bar.css")
+
+
+
+@{
+    Html.RenderPartial("~/Views/Partial/UserProfile_" + SessionManager.LoggedInUser.Language.ISO + ".cshtml", Model);
+}

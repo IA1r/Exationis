@@ -1,0 +1,17 @@
+﻿@using Core.Common;
+@{
+    ViewBag.Title = "Discipline";
+
+}
+@Scripts.Render("~/Scripts/Site/Discipline.js")
+@Styles.Render("~/Content/Styles/Discipline.css")
+@Scripts.Render("~/Scripts/angular-ui/ui-bootstrap-tpls-0.11.0.js")
+@Scripts.Render("~/Scripts/angular-filter-v0.4.7.js")
+@Scripts.Render("~/Scripts/loading-bar.js")
+@Styles.Render("~/Content/loading-bar.css")
+
+
+
+@{
+    Html.RenderPartial("~/Views/Partial/Discipline_" + SessionManager.LoggedInUser.Language.ISO + ".cshtml");
+}

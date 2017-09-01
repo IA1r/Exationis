@@ -1,0 +1,84 @@
+﻿<div class="col-md-2">
+    <div ng-repeat="q in fullResult">
+        <div class="button raised blue" id="button{{$index}}" ng-click="getQuestion(q, $index)">{{'Питання ' + ($index + 1)}}</div>
+    </div>
+</div>
+<div class="col-md-10">
+    <div ng-show="show_question">
+        <h2 class="text-center">Питання</h2>
+        <div class="text-center"> <span class="neutral_input" ng-bind="question.Content"></span> </div>
+
+        <h2 class="text-center">Відповіді</h2>
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="col-md-1 margin_top_40"><h3>a)</h3></div>
+                <div class="col-md-7 margin_top_53"> <span class="neutral_input" ng-bind="question.Answer[0].Content"></span></div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <h3>Правильна</h3>
+                        <input type="checkbox" id="cb1" ng-model="question.Answer[0].Correct" disabled="disabled" />
+                        <label for="cb1" class="check-box1"></label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <h3>Результат</h3>
+                        <input type="checkbox" id="cb11" ng-model="question.Answer[0].Result" disabled="disabled" />
+                        <label for="cb11" class="check-box1" ng-class="{checkbox2: question.Answer[0].Correct != question.Answer[0].Result}"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-1 "><h3>b)</h3></div>
+                <div class="col-md-7 margin_top_15"> <span class="neutral_input" ng-bind="question.Answer[1].Content"></span></div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <input type="checkbox" id="cb1" ng-model="question.Answer[1].Correct" disabled="disabled" />
+                        <label for="cb1" class="check-box1"></label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <input type="checkbox" id="cb11" ng-model="question.Answer[1].Result" disabled="disabled" />
+                        <label for="cb11" class="check-box1" ng-class="{checkbox2: question.Answer[1].Correct != question.Answer[1].Result}"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 ">
+                <div class="col-md-1 "><h3>c)</h3></div>
+                <div class="col-md-7 margin_top_15"> <span class="neutral_input" ng-bind="question.Answer[2].Content"></span></div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <input type="checkbox" id="cb1" ng-model="question.Answer[2].Correct" disabled="disabled" />
+                        <label for="cb1" class="check-box1"></label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <input type="checkbox" id="cb11" ng-model="question.Answer[2].Result" disabled="disabled" />
+                        <label for="cb11" class="check-box1" ng-class="{checkbox2: question.Answer[2].Correct != question.Answer[2].Result}"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="col-md-1 "><h3>d)</h3></div>
+                <div class="col-md-7 margin_top_15"> <span class="neutral_input" ng-bind="question.Answer[3].Content"></span></div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <input type="checkbox" id="cb1" ng-model="question.Answer[3].Correct" disabled="disabled" />
+                        <label for="cb1" class="check-box1"></label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="margin_top_15">
+                        <input type="checkbox" id="cb11" ng-model="question.Answer[3].Result" disabled="disabled" />
+                        <label for="cb11" class="check-box1" ng-class="{checkbox2: question.Answer[3].Correct != question.Answer[3].Result}"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

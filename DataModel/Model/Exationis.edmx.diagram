@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2aa4771ec2e4437ebf820b236758106b" Name="Diagram1">
+        <EntityTypeShape EntityType="ExationisModel.Answer" Width="1.5" PointX="6.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExationisModel.Discipline" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExationisModel.Role" Width="1.5" PointX="0.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExationisModel.User" Width="1.5" PointX="2.875" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="ExationisModel.FK_Discipline_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ExationisModel.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ExationisModel.TestResult" Width="1.5" PointX="9" PointY="5.875" />
+        <AssociationConnector Association="ExationisModel.FK_TestResult_Answer" />
+        <AssociationConnector Association="ExationisModel.FK_TestResult_User" />
+        <EntityTypeShape EntityType="ExationisModel.Question" Width="1.5" PointX="0.5" PointY="6.625" />
+        <EntityTypeShape EntityType="ExationisModel.TestPoint" Width="1.5" PointX="2.875" PointY="6" />
+        <AssociationConnector Association="ExationisModel.FK_Answer_Question" />
+        <AssociationConnector Association="ExationisModel.FK_TestPoints_User" />
+        <EntityTypeShape EntityType="ExationisModel.Test" Width="1.5" PointX="6.5" PointY="7.625" />
+        <AssociationConnector Association="ExationisModel.FK_Test_Discipline" />
+        <AssociationConnector Association="ExationisModel.FK_Question_Test" />
+        <AssociationConnector Association="ExationisModel.FK_TestPoints_Test" />
+        <EntityTypeShape EntityType="ExationisModel.Faculty" Width="1.5" PointX="8.5" PointY="1.125" />
+        <AssociationConnector Association="ExationisModel.FK_Discipline_Faculty" />
+        <AssociationConnector Association="ExationisModel.FK_User_Faculty" />
+        <EntityTypeShape EntityType="ExationisModel.Access" Width="1.5" PointX="0.5" PointY="4.125" />
+        <EntityTypeShape EntityType="ExationisModel.Image" Width="1.5" PointX="2.75" PointY="10" />
+        <AssociationConnector Association="ExationisModel.FK_Image_Question" />
+        <EntityTypeShape EntityType="ExationisModel.Language" Width="1.5" PointX="8.625" PointY="3.5" />
+        <AssociationConnector Association="ExationisModel.FK_User_Language" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

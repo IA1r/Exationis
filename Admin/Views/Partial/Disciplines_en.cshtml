@@ -1,0 +1,181 @@
+﻿<div id="discipline" ng-cloak>
+    <div ng-controller="HomeAPIController" ng-init="GetDisciplines()">
+        <div class="col-md-6">
+            <div class="col-md-3 text-center cust_color" data-toggle="modal" data-target="#newDiscipline">New Discipline</div>
+            <div class="col-md-3 text-center cust_color" data-toggle="modal" data-target="#newTest" ng-click="setDisciplines()">New Test</div>
+            <div class="col-md-3 text-center cust_color" data-toggle="modal" data-target="#Access" ng-click="setDisciplines()">Access</div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div ng-repeat="ar1 in groupedDis" class="card-1 margin_top_30 col-md-12">
+            <h2 ng-if="$index == 0">Disciplines</h2>
+            <div ng-repeat="ar2 in ar1 track by $index" id="item-{{$index}}" ng-if="ar2" ng-click="slide($index)" class="card-1 card col-md-2 margin_bot_10">
+                <span style="font-weight:600">{{ar2.Name}}</span>
+                <div class="clearfix"></div>
+                <div hidden class="test" ng-repeat="t in ar2.Tests">
+                    <div><a class="menu_link col-md-12" href="/Test/{{t.ID}}">{{t.Name}}</a></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-4" ng-if="ar2.Tests.length <= 0">Empty</div>
+            </div>
+        </div>
+
+
+        <div class="card-1 margin_top_30 col-md-12">
+            <div class="col-md-6">
+                <h2>Graphical results</h2>
+                <a href="/Charts"><img src="/Content/Images/charts.gif" /></a>
+            </div>
+            <div class="col-md-6">
+                <h2>Results</h2>
+                <a href="/Result"><img class="col-md-12" src="/Content/Images/results.gif" /></a>
+            </div>
+        </div>
+
+        <div id="newDiscipline" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal_body">
+                    <div class="modal_header col-md-12">
+                        <h2 class="text-center">New Discipline</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal_body col-md-12">
+                        <form name="form2" class="text-center">
+                            <div class="group">
+                                <input type="text" class="input_text" name="Name" ng-model="discipline_form.Name" ng-pattern="patterns.DisciplineName" required />
+                                <label class="label"> Name </label>
+                                <img ng-show="!form2.Name.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+                                <img ng-show="form2.Name.$dirty && form2.Name.$valid && errorDiscipline == null" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+                                <img ng-show="form2.Name.$dirty && form2.Name.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Discipline"></>
+                                <img ng-show="errorDiscipline" src="~/Content/Images/attention_orange.png" data-toggle="tooltip" data-placement="right" title="{{errorDiscipline}}"></>
+                            </div>
+                            <div class="group">
+                                <input type="text" class="input_text" name="Course" ng-model="discipline_form.Course" ng-pattern="discipline_patterns.Course" required />
+                                <label class="label"> Course </label>
+                                <img ng-show="!form2.Course.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+                                <img ng-show="form2.Course.$dirty && form2.Course.$valid && errorLogin == null" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+                                <img ng-show="form2.Course.$dirty && form2.Course.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Course: 1-6"></>
+                            </div>
+                            <div class="group">
+                                <select class="input_text" ng-model="discipline_form.Faculty" required>
+                                    <option class="label" value="">Faculty</option>
+                                    <option ng-repeat="f in discipline_form.Facultys" value="{{f.ID}}">{{f.Name}}</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal_footer col-md-12">
+                        <div class="pull-left"><button class="btn btn-default" style="border-radius: 0px; background-color: #e5ebf1" ng-click="createDiscipline()">Create</button> </div>
+                        <div class="pull-right"><button type="button" class="btn btn-default" style="border-radius: 0px; background-color: #e5ebf1" data-dismiss="modal">Close</button></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="TestAPIController">
+        <div id="newTest" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal_body">
+                    <div class="modal_header col-md-12">
+                        <h2 class="text-center">New Test</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal_body col-md-12">
+                        <form name="form1" class="text-center">
+                            <select class="input_text" ng-model="TestModel.DisciplineID" ng-click="GetDisciplines()" ng-change="TestModel.Name = ''" required>
+                                <option class="" value="">--Select Discipline--</option>
+                                <option ng-repeat="d in disciplines" value="{{d.ID}}">{{d.Name}}</option>
+                            </select>
+
+                            <div class="margin_top_30" ng-show="TestModel.DisciplineID">
+                                <div class="group">
+                                    <input type="text" class="input_text" name="Name" ng-model="TestModel.Name" ng-pattern="testPatterns.TestName" ng-change="isTestExist()" required />
+                                    <label class="label"> Name </label>
+                                    <img ng-show="!form1.Name.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+                                    <img ng-show="form1.Name.$dirty && form1.Name.$valid && errorTest == null" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+                                    <img ng-show="form1.Name.$dirty && form1.Name.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Test 1"></>
+                                    <img ng-show="errorTest" src="~/Content/Images/attention_orange.png" data-toggle="tooltip" data-placement="right" data-original-title="{{errorTest}}"></>
+                                </div>
+                                <div class="group">
+                                    <input type="text" class="input_text" name="Limitation" ng-model="TestModel.Limitation" ng-pattern="testPatterns.Limitation" ng-change="isLoginExist()" required />
+                                    <label class="label"> Limitation </label>
+                                    <img ng-show="!form1.Limitation.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+                                    <img ng-show="form1.Limitation.$dirty && form1.Limitation.$valid && errorLogin == null" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+                                    <img ng-show="form1.Limitation.$dirty && form1.Limitation.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="00:45:00"></>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal_footer col-md-12">
+                        <div class="pull-left"><button class="btn btn-default" style="border-radius: 0px; background-color: #e5ebf1" ng-click="createTest()">Create</button> </div>
+                        <div class="pull-right"><button type="button" class="btn btn-default" style="border-radius: 0px; background-color: #e5ebf1" data-dismiss="modal">Close</button></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Access" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal_body">
+                    <div class="modal_header col-md-12">
+                        <h2 class="col-md-12 text-center">Student Filter</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal_body col-md-12">
+                        <form name="form3" style="margin-top:20px;text-align:center">
+                            <select class="input_text" ng-model="AccessModel.TestID" ng-click="GetDisciplines()" ng-change="AccessModel.Group = ''" required>
+                                <option class="" value="">--Select Test--</option>
+                                <optgroup ng-repeat="d in disciplines" label="{{d.Name}}">
+                                    <option ng-repeat="t in d.Tests" value="{{t.ID}}">{{t.Name}}</option>
+                                </optgroup>
+                            </select>
+
+                            <div ng-show="AccessModel.TestID" class="group margin_top_30">
+                                <input type="text" class="input_text" name="Group" ng-model="AccessModel.Group" ng-pattern="testPatterns.Group" ng-change="GetStudents()" required />
+                                <label class="label"> Group </label>
+                                <img ng-show="!form3.Group.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+                                <img ng-show="form3.Group.$dirty && form3.Group.$valid && errorLogin == null" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+                                <img ng-show="form3.Group.$dirty && form3.Group.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Ex:401-2016"></>
+                            </div>
+                        </form>
+                        <div ng-if="students.length == 0"> No Results</div>
+                        <div ng-if="students">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td class="text-center border_right_1"><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">Name</a></td>
+                                        <td class="text-center border_right_1"><a href="#" ng-click="sortType = 'SurName'; sortReverse = !sortReverse">SurName</a></td>
+                                        <td class="text-center border_right_1"><a href="#" ng-click="sortType = 'Group'; sortReverse = !sortReverse">Group</a></td>
+                                        <td class="text-center"><a href="#" ng-click="sortType = 'Points'; sortReverse = !sortReverse">Access</a></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="s in students | orderBy:sortType:sortReverse">
+                                        <td class="col-md-3 text-center border_right_1">{{s.Name}}</td>
+                                        <td class="col-md-3 text-center border_right_1">{{ s.SurName }}</td>
+                                        <td class="col-md-3 text-center border_right_1">{{ s.Group }}</td>
+                                        <td class="col-md-3 text-center">
+                                            <input type="checkbox" id="cb{{$index}}" ng-model="s.Access" />
+                                            <label for="cb{{$index}}" class="check-box"></label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal_footer col-md-12">
+                        <div class="pull-left"><button class="btn btn-default" style="border-radius: 0px; background-color: #e5ebf1" ng-click="SetAccess()">Approve</button> </div>
+                        <div class="pull-right"><button type="button" class="btn btn-default" style="border-radius: 0px; background-color: #e5ebf1" data-dismiss="modal">Close</button></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

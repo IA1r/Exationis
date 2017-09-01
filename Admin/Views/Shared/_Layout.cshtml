@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/bootstrap/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/Scripts/loading-bar.js")
+    @Styles.Render("~/Content/loading-bar.css")
+</head>
+<body>
+    <div class="header">
+        <div style="width:1200px;margin:auto">
+            <div class="pull-left">
+                <a href="/Disciplines" style="color:white; text-decoration:none;font-size:50px">Exationis</a>
+            </div>
+
+            <div class="pull-right">
+                @Html.Partial("~/Views/Partial/Greeting.cshtml")
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <div>
+            @RenderBody()
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <div class="footer">
+        <div class="text-center">
+            Exationis / ASP.NET MVC <br>
+            Created by Andrew Gumenyuk
+        </div>
+    </div>
+</body>
+</html>

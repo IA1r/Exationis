@@ -1,0 +1,17 @@
+﻿<form name="form2" style="margin-top:20px">
+
+    <div class="group">
+        <input type="text" class="input_text" name="Login" ng-model="signin_form.Login" ng-pattern="patterns.Login" required />
+        <label class="label"> Login </label>
+        <img ng-show="!form2.Login.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+        <img ng-show="form2.Login.$dirty && form2.Login.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+        <img ng-show="form2.Login.$dirty && form2.Login.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Air, AGumenyuk"></>
+    </div>
+
+    <div class="group">
+        <input type="password" class="input_text" name="Password" ng-model="signin_form.Password" ng-pattern="patterns.Password" required />
+        <label class="label"> Password </label>
+        <img ng-show="!form2.Password.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+        <img ng-show="form2.Password.$dirty && form2.Password.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+    </div>
+</form>

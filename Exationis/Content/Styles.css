@@ -1,0 +1,275 @@
+﻿.header {
+    display: block;
+    min-width: 1200px;
+    margin: auto;
+    padding: 12px 0;
+    text-align: center;
+    background-color: #507299;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.275);
+}
+
+.body {
+    width: 1200px;
+    min-height: 90%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.footer {
+    display: block;
+    overflow: hidden;
+    min-width: 1200px;
+    margin: auto;
+    min-height: 50px;
+    text-align: center;
+    background-color: #507299;
+    box-shadow: 2px 0px 5px 0px rgba(0, 0, 0, 0.275);
+    margin-top: 15px;
+    color: white;
+}
+
+.modal_header {
+    width: 600px;
+    text-align: center;
+    background-color: #507299;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.275);
+    color: #fff;
+}
+
+.modal_body {
+    width: 600px;
+    margin-top: 25px;
+    background:#fff;
+}
+
+.modal_footer {
+    width: 600px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.275);
+    padding: 10px;
+}
+
+input.ng-dirty.ng-invalid  {
+    background-image: linear-gradient(to bottom, #ff0000, #ff0000), linear-gradient(to bottom, silver, silver);
+}
+/*.card-1 {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}*/
+
+
+
+/*.greeting {
+    float: right;
+    min-width: 100px;
+    position: relative;
+}*/
+
+/*.margin_top_8 {
+    margin-top: 8px;
+}*/
+
+
+.margin_right_20 {
+    margin-right: 20px;
+}
+
+.avatar_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px #507299;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+/*.menu_link {
+    padding: 5px;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+
+    .menu_link:hover {
+        background-color: #d1d9e0;
+    }
+
+.no_link {
+    text-decoration: none !important;
+    color: black;
+}
+
+    .no_link:hover {
+        font-weight: 600;
+        cursor: pointer;
+        color: black;
+    }*/
+
+/*.b-popup {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+    .b-popup .b-popup-content {
+        margin: auto;
+        margin-top: 20%;
+        width: 520px;
+        min-height: 50px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #000;
+    }
+
+    .b-popup .b-popup-content-form-test {
+        margin: auto;
+        margin-top: 5%;
+        width: 620px;
+        min-height: 820px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #000;
+    }*/
+
+/*.shadowQ {
+    font-size: 18px;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    width: 600px;
+    border: 0;
+    display: block;
+    background: #edeef0 no-repeat;
+    vertical-align: central;
+    background-image: linear-gradient(to bottom, #0094ff, #0094ff), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+
+    .shadowQ:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }
+
+.wrongAnswer {
+    font-size: 18px;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    width: 450px;
+    border: 0;
+    display: block;
+    background: #edeef0 no-repeat;
+    vertical-align: central;
+    background-image: linear-gradient(to bottom, #ff0000, #ff0000), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+
+    .wrongAnswer:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }
+
+.correctAnswer {
+    font-size: 18px;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    width: 450px;
+    border: 0;
+    display: block;
+    background: #edeef0 no-repeat;
+    vertical-align: central;
+    background-image: linear-gradient(to bottom, #13b630, #13b630), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+
+    .correctAnswer:hover {
+        background-size: 100% 2px, 100% 1px;
+        background-image: linear-gradient(to bottom, #13b630, #13b630), linear-gradient(to bottom, #13b630, #13b630);
+        outline: none;
+    }*/
+
+
+
+
+/*.points {
+    width: 100px;
+    border: 0;
+    background: #edeef0 no-repeat;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #0094ff, #0094ff), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+
+    .points:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }
+
+.points_form {
+    width: 100px;
+    border: 0;
+    background: white no-repeat;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #0094ff, #0094ff), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+
+    .points_form:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }
+
+.testData {
+    border: 0;
+    background: #edeef0 no-repeat;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #0094ff, #0094ff), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+
+    .testData:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+/*.fade.ng-hide {
+    opacity: 0;
+}
+
+.fade.ng-hide-remove {
+    transition: all linear 500ms;
+}
+
+.fade.ng-hide-add {
+    transition: all linear 500ms;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}*/

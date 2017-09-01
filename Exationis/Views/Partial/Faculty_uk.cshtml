@@ -1,0 +1,58 @@
+﻿<div id="faculty" ng-cloak>
+    <div ng-controller="FacultyAPIController">
+        <div ng-show="faculties">
+            <div class="col-md-12 card-1">
+                <h2>Факультети</h2>
+                <div ng-repeat="f in faculties" ng-if="$index <= 4" class="pull-left card card-1 col-md-2 margin_bot_10">
+                    <span style="font-weight:600">{{f.Name}}</span>
+                    <div ng-repeat="(key, value) in f.Disciplines | groupBy: 'Course'" id="item-{{$parent.$index}}{{$index}}" ng-click="slide($parent.$index, $index)">
+                        <span class="course col-md-12">Курс: {{key}} </span>
+                        <div hidden class="discipline col-md-10" style="margin-left:10px">
+                            <div ng-repeat="d in value"><a class="menu_link col-md-12" href="/Discipline/{{d.ID}}">{{d.Name}}</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 card-1 margin_top_50">
+                <div ng-repeat="f in faculties" ng-if="$index >= 5" class="pull-left card card-1 col-md-2 margin_bot_10">
+                    <span style="font-weight:600">{{f.Name}}</span>
+                    <div ng-repeat="(key, value) in f.Disciplines | groupBy: 'Course'" id="item-{{$parent.$index}}{{$index}}" ng-click="slide($parent.$index, $index)">
+                        <span class="course col-md-12">Курс: {{key}} </span>
+                        <div hidden class="discipline col-md-10" style="margin-left:10px">
+                            <div ng-repeat="d in value"><a class="menu_link col-md-12" href="/Discipline/{{d.ID}}">{{d.Name}}</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="col-md-12 card-1 margin_top_50">
+                <div class="form-group margin_top_8">
+                    <input type="text" class="input_text" placeholder="Пошук дисципліни" ng-change="SearchDiscipline()" ng-model="searchDiscipline">
+                </div>
+                <div ng-show="disciplines.length == 0">Немає результатів</div>
+                <div ng-show="disciplines.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td style="border-right: solid 1px lightgrey" class="text-center"><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">Дисципліна</a></td>
+                                <td style="border-right: solid 1px lightgrey" class="text-center"><a href="#" ng-click="sortType = 'SurName'; sortReverse = !sortReverse">Факультет</a></td>
+                                <td class="text-center"><a href="#" ng-click="sortType = 'Points'; sortReverse = !sortReverse">Курс</a></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="item_hover" ng-click="redirect('Discipline/' + d.ID)" ng-repeat="d in disciplines | orderBy:sortType:sortReverse | filter:searchDiscipline | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                                <td style="border-right: solid 1px lightgrey">{{d.Name}}</td>
+                                <td style="border-right: solid 1px lightgrey" class="col-md-4">{{ d.Faculty }}</td>
+                                <td class="col-md-4 text-center">{{ d.Course }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" ng-model="currentPage" class="pull-right"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

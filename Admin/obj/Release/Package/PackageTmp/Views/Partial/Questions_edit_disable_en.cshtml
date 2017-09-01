@@ -1,0 +1,100 @@
+﻿ <!-- Question body -->
+<div class="col-md-8">
+    <div class="alert-danger col-md-12 text-center" style="padding: 5px; background-color: #e5ebf1; color: #507299">
+        The database contains the results of this test. Some editing functionality is not available: changes in the correctness of the answer, and the addition of a new question.
+    </div>
+    <div class="clearfix"></div>
+    <h2 class="text-center" ng-show="!show_question"> Choose the Question</h2>
+    <div ng-show="show_question">
+        <!-- Question content -->
+        <h2 class="text-center">
+            Qeustion - <span ng-bind="question.index"></span>
+            Points - <input type="text" class="points" ng-model="question.Points" />
+        </h2>
+        <div class="margin_top_15">
+            <textarea class="shadowQ col-md-12" ng-model="question.Content" autogrow></textarea>
+            <div class="clearfix"></div>
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Question images -->
+        <div class="margin_top_15">
+            <div class="col-md-12 grid pop" ng-show="question.images">
+                <img ng-repeat="im in question.images" ng-src="https://drive.google.com/uc?export=view&id={{im.ImageID}}" class="grid-item margin_left_15" ng-click="showImageModal(im)" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Answers content -->
+        <h2 class="text-center">Answers</h2>
+        <div class="col-md-12">
+            <div class="col-md-12 margin_top_30">
+                <div class="col-md-1"><h3>a)</h3></div>
+                <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer: !question.Answer[0].Correct}" ng-model="question.Answer[0].Content" autogrow></textarea>  </div>
+                <div class="col-md-4">
+                    <label class="switch margin_top_15">
+                        <input class="off-screen" type="checkbox" ng-model="question.Answer[0].Correct" disabled />
+                        <span class="switch__off-text">wrong</span>
+                        <span class="switch__lever"></span>
+                        <span class="switch__on-text">correct</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin_top_30">
+                <div class="col-md-1"><h3>b)</h3></div>
+                <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer: !question.Answer[1].Correct}" ng-model="question.Answer[1].Content" autogrow></textarea>  </div>
+                <div class="col-md-4">
+                    <label class="switch margin_top_15">
+                        <input class="off-screen" type="checkbox" ng-model="question.Answer[1].Correct" disabled />
+                        <span class="switch__off-text">wrong</span>
+                        <span class="switch__lever"></span>
+                        <span class="switch__on-text">correct</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 margin_top_30">
+                <div class="col-md-1"><h3>c)</h3></div>
+                <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer: !question.Answer[2].Correct}" ng-model="question.Answer[2].Content" autogrow></textarea>  </div>
+                <div class="col-md-4">
+                    <label class="switch margin_top_15">
+                        <input class="off-screen" type="checkbox" ng-model="question.Answer[2].Correct" disabled />
+                        <span class="switch__off-text">wrong</span>
+                        <span class="switch__lever"></span>
+                        <span class="switch__on-text">correct</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin_top_30">
+                <div class="col-md-1"><h3>d)</h3></div>
+                <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer: !question.Answer[3].Correct}" ng-model="question.Answer[3].Content" autogrow></textarea>  </div>
+                <div class="col-md-4">
+                    <label class="switch margin_top_15">
+                        <input class="off-screen" type="checkbox" ng-model="question.Answer[3].Correct" disabled />
+                        <span class="switch__off-text">wrong</span>
+                        <span class="switch__lever"></span>
+                        <span class="switch__on-text">correct</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!--------------------------------------------------------------------------------------------------------------------------------->
+
+        <div class="col-md-12 margin_top_30">
+            <div ng-show="edit_error" class="alert-danger col-md-10 text-center" style="padding: 5px; background-color: #febebe; color: #ff0000;" ng-bind="edit_error"></div>
+            <div ng-show="successful" class="alert-danger col-md-10 text-center" style="padding: 5px; background-color: #e5ebf1; color: #507299;" ng-bind="successful"></div>
+            <div class="pull-right"><input type="button" class="btn btn-default pull-right" style="border-radius: 0px; background-color: #e5ebf1" ng-click="editQuestion(question)" value="Edit" /> </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="col-md-2">
+    <div ng-show="question" class="button raised blue" data-toggle="modal" onclick="document.getElementById('imageUpload').click()" data-target="#uploadModal">Image Upload</div>
+    <input type="file" style="display:none" id="imageUpload" onchange="UploadImage()" multiple />
+</div>
+<div class="clearfix"></div>
+<!--------------------------------------------------------------------------------------------------->

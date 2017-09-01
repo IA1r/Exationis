@@ -1,0 +1,66 @@
+﻿.card {
+    background: #fff;
+    border-radius: 2px;
+    margin: 1rem;
+    padding: 3px;
+}
+
+.card-3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.margin_top_50 {
+    margin-top: 25px;
+}
+
+.margin_top_8 {
+    margin-top: 8px;
+}
+
+.margin_bot_10 {
+    margin-bottom: 20px;
+}
+
+.course:hover {
+    cursor: pointer;
+    background-color: #d1d9e0;
+}
+
+.card-1 {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    background: #fff;
+}
+
+.menu_link {
+    padding: 5px;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+
+    .menu_link:hover {
+        background-color: #d1d9e0;
+    }
+
+.item_hover:hover {
+    background: #507299;
+    color: #fff;
+    cursor:pointer;
+}
+
+
+.input_text {
+    border: 0;
+    background: white no-repeat;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #507299, #507299), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    font-size: 20px;
+}
+
+    .input_text:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }

@@ -1,0 +1,84 @@
+﻿@using Core.Common;
+@Scripts.Render("~/Scripts/Site/Account.js")
+
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    @Styles.Render("~/Content/Styles/Greeting.css")
+    <div class="col-md-12">
+        <div class="margin_top_8">
+            <div class="pull-right">
+                <h3 class="pull-left margin_right_20 margin_top_8" style="color:white">@HttpContext.Current.User.Identity.Name</h3>
+                <a class="pull-left" id="avatar" href="#"><img src="https://drive.google.com/uc?export=view&id=@SessionManager.LoggedInUser.Avatar" class="avatar_icon" /></a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="profile_menu" style="position: relative; margin-left: 60px;width:150px" hidden>
+        <div style="background-color:white;position:absolute;margin-top:10px; z-index:3;" class="card-1 text-left">
+            <div>
+                <a class="col-md-12 menu_link" href="/Faculty">Home Page</a>
+                <a class="col-md-12 menu_link" href="/UserProfile/@SessionManager.LoggedInUser.ID">Profile</a>
+            </div>
+            <div class="clearfix"></div>
+
+            <div style="border-top: 1px solid #7894b5">
+                <a class="col-md-12 menu_link" href="/SignOut/">Sign Out</a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+}
+
+
+@if (!HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    @Styles.Render("~/Content/Styles/Authorization.css")
+    <div class="pull-right"> <button type="button" class="btn btn-default margin_top_8" style="border-radius: 0px; background-color: white" data-toggle="modal" data-target="#myModal">SignIn</button> </div>
+    <div class="clearfix"></div>
+
+    <div id="account" ng-cloak>
+        <div ng-controller="AccountAPIController" ng-init="GetFacultyList()">
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal_body">
+                        <div class="modal_header">
+                            <div ng-init="accessType = 'registration'">
+                                <div class="col-md-6 access" id="registration" style="border-bottom:solid 3px white"><h2 ng-click="access('registration')">Registration</h2></div>
+                                <div class="col-md-6 access" id="signin"><h2 ng-click="access('signin')">SignIn</h2></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div ng-show="accessType == 'registration'">
+                            <div class="modal_body">
+                                @Html.Partial("~/Views/Partial/Registration.cshtml")
+                            </div>
+                            <div class="modal_footer">
+                                <div>
+                                    <div class="pull-left"><button class="btn btn-default " style="border-radius: 0px; background-color: #e5ebf1" ng-click=" registration()">Registration</button> </div>
+                                    <div class="pull-right"><button type="button" id="btn_close" class="btn btn-default" style="border-radius: 0px; background-color: #e5ebf1" data-dismiss="modal">Close</button></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div ng-show="accessType == 'signin'">
+                            <div class="modal-body">
+                                @Html.Partial("~/Views/Partial/SignIn.cshtml")
+                            </div>
+                            <div class="modal_footer">
+                                <div>
+                                    <div class="col-md-3"><button class="btn btn-default pull-left" style="border-radius: 0px; background-color: #e5ebf1" ng-click="signin()">SignIn</button> </div>
+                                    <div class="alert-danger col-md-6 text-center" style="padding: 5px; background-color: #e5ebf1; color: #507299;" ng-show="errorSignIn" ng-bind="errorSignIn"></div>
+                                    <div class="col-md-3 pull-right"><button type="button" id="btn_close" style="border-radius: 0px; background-color: #e5ebf1" class="btn btn-default" data-dismiss="modal">Close</button></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

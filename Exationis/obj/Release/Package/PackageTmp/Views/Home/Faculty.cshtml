@@ -1,0 +1,21 @@
+﻿@using Core.Common
+@{
+    ViewBag.Title = "Faculty";
+}
+
+@Scripts.Render("~/Scripts/Site/Faculty.js")
+@Styles.Render("~/Content/Styles/Faculty.css")
+@Scripts.Render("~/Scripts/angular-filter-v0.4.7.js")
+@Scripts.Render("~/Scripts/angular-ui/ui-bootstrap-tpls-0.11.0.js")
+@Scripts.Render("~/Scripts/loading-bar.js")
+@Styles.Render("~/Content/loading-bar.css")
+
+
+@if (SessionManager.LoggedInUser == null)
+{
+    Html.RenderPartial("~/Views/Partial/Faculty_en.cshtml");
+}
+else
+{
+    Html.RenderPartial("~/Views/Partial/Faculty_" + SessionManager.LoggedInUser.Language.ISO + ".cshtml");
+}

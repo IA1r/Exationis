@@ -1,0 +1,58 @@
+﻿<div ng-app="Charts" class="card-1" ng-cloak>
+    <div ng-controller="ResultAPIController">
+        <div class="col-md-12">
+            <h2>Graphical result</h2>
+            <div class="pull-left">
+                <h3 class="pull-left">Test - </h3>
+                <select class="input_text pull-left margin_left_5 margin_top_15" ng-model="DrawChartRequestModel.TestID" required>
+                    <option class="" value="">--Select Test--</option>
+                    <optgroup ng-repeat="d in disciplines" label="{{d.Name}}">
+                        <option ng-repeat="t in d.Tests" value="{{t.ID}}">{{t.Name}}</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="pull-left margin_left_15">
+                <h3 class="pull-left">Type - </h3>
+                <select class="input_text pull-left margin_left_5 margin_top_15" ng-model="DrawChartRequestModel.OneOrMany" ng-change="ChengeType()" required>
+                    <option class="" value="">--Select Type--</option>
+                    <option value="1">For one Group</option>
+                    <option value="2">For many Groups</option>
+                </select>
+            </div>
+
+            <div class="pull-left margin_left_15" ng-show="DrawChartRequestModel.OneOrMany == 1">
+                <h3 class="pull-left">Group - </h3>
+                <select class="input_text pull-left margin_left_5 margin_top_15" ng-model="DrawChartRequestModel.Group" required>
+                    <option class="" value="">--Select Group--</option>
+                    <option ng-repeat="g in groups" value="{{g}}">{{g}}</option>
+                </select>
+            </div>
+
+            <div class="pull-left margin_left_15" ng-show="DrawChartRequestModel.OneOrMany == 2">
+                <h3 class="pull-left">Groups - </h3>
+                <select class="input_text pull-left margin_left_5 margin_top_15" ng-model="DrawChartRequestModel.Groups" required multiple>
+                    <option class="" value="">--Select Groups--</option>
+                    <option ng-repeat="g in groups" value="{{g}}">{{g}}</option>
+                </select>
+            </div>
+            <div>
+                <span class="alert-danger col-md-3 text-center margin_top_15 margin_left_30" style="padding: 5px; background-color: #e5ebf1; color: #507299;" ng-show="errorDraw" ng-bind="errorDraw"></span>
+                <input type="button" class="btn btn-default pull-right margin_top_15" ng-show="DrawChartRequestModel.TestID && DrawChartRequestModel.OneOrMany && DrawChartRequestModel.Group || DrawChartRequestModel.Groups.length > 0" style="border-radius: 0px; background-color: #e5ebf1" ng-click="Draw()" value="Draw" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-md-12">
+            <div ng-show="DrawChartRequestModel.OneOrMany == 1">
+                <div id="lineChartResultsGroup"></div>
+                <div id="everyStudent"></div>
+            </div>
+            <div ng-show="DrawChartRequestModel.OneOrMany == 2">
+                <div id="lineChart"></div>
+                <div id="barChart"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

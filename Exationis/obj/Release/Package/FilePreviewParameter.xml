@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Exationis" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\C\#\\Exationis\\Exationis\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\C\#\\Exationis\\Exationis\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ExationisEntities-Web.config Connection String" description="" value="metadata=res://*/Model.Exationis.csdl|res://*/Model.Exationis.ssdl|res://*/Model.Exationis.msl;provider=System.Data.SqlClient;provider connection string=&quot;Server=tcp:exationisdb.database.windows.net,1433;Initial Catalog=ExationisDB;Persist Security Info=False;User ID=Air;Password=8ohaz4m8ohaz4m!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\C\#\\Exationis\\Exationis\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ExationisEntities']/@connectionString" />
+  </parameter>
+</parameters>

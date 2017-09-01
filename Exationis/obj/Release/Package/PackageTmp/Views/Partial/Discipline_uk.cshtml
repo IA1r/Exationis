@@ -1,0 +1,41 @@
+﻿@model int
+<div ng-app="Test-List" ng-cloak class="body card-1">
+    <div ng-controller="TestAPIController" ng-init="GetDiscipline(@Model)">
+        <div ng-if="disciplineError" ng-bind="disciplineError"></div>
+        <div class="col-md-12" ng-if="disciplineError == null">
+            <h2><span>Дисципліна: {{discipline.Name}}</span>  <span class="pull-right">Керівник:{{discipline.Head}}</span> </h2>
+
+            <div ng-if="testError" ng-bind="testError"></div>
+            <div class="col-md-10 col-md-offset-1" ng-if="testError == null">
+                <div class="form-group">
+                    <input type="text" class="input_text" placeholder="Search Test" ng-model="searchTest">
+                </div>
+                <table id="table" class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <td style="border-right: solid 1px lightgrey">Назва</td>
+                            <td style="border-right: solid 1px lightgrey">Обмеження</td>
+                            <td style="border-right: solid 1px lightgrey">Оцінка</td>
+                            <td style="border-right: solid 1px lightgrey">Бали</td>
+                            <td>Доступ</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="item_hover" ng-click="redirect(t)" ng-repeat="t in tests | orderBy:sortType:sortReverse | filter:searchTest | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                            <td class="text-center" style="border-right: solid 1px lightgrey">{{ t.Name }}</td>
+                            <td class="text-center" style="border-right: solid 1px lightgrey">{{ t.Limitation }}</td>
+                            <td class="text-center" style="border-right: solid 1px lightgrey">{{ t.Evaluation }}</td>
+                            <td class="text-center" style="border-right: solid 1px lightgrey">{{ t.Points }}</td>
+                            <td class="text-center" ng-if="t.Access">Має</td>
+                            <td class="text-center" ng-if="!t.Access">Не має</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination class="pull-right" page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" ng-model="currentPage"></pagination>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

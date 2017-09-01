@@ -1,0 +1,47 @@
+﻿.group {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.registration {
+    border: 0;
+    background: white no-repeat;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #507299, #507299), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    font-size: 18px;
+}
+
+    .registration:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }
+
+.label {
+    color: gray !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    position: absolute;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+    margin-left: -38%;
+}
+
+/*active state*/
+input:focus ~ .label, input:valid ~ .label {
+    top: -20px;
+    font-size: 14px !important;
+    color: #5264AE;
+}
+
+.access {
+    color: white;
+}
+
+    .access:hover {
+        cursor: pointer;
+    }

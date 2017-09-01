@@ -1,0 +1,28 @@
+﻿.menu_link {
+    padding: 5px;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+
+    .menu_link:hover {
+        background-color: #d1d9e0;
+    }
+
+ .margin_top_8{
+     margin-top:8px;
+ }
+
+ .margin_right_20 {
+    margin-right: 20px;
+}
+
+.avatar_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px #507299;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}

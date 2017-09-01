@@ -1,0 +1,18 @@
+﻿@using Core.Common;
+@{
+    ViewBag.Title = "Test";
+}
+
+@Scripts.Render("~/Scripts/Site/Test_" + SessionManager.LoggedInUser.Language.ISO + ".js")
+@Scripts.Render("~/Scripts/Site/jquery.countdown.js")
+@Styles.Render("~/Content/Checkbox.css")
+@Styles.Render("~/Content/Button.css")
+@Styles.Render("~/Content/Styles/Test.css")
+@Scripts.Render("~/Scripts/loading-bar.js")
+@Styles.Render("~/Content/loading-bar.css")
+@Scripts.Render("~/Scripts/masonry.js")
+
+
+@{
+    Html.RenderPartial("~/Views/Partial/Test_" + SessionManager.LoggedInUser.Language.ISO + ".cshtml");
+}

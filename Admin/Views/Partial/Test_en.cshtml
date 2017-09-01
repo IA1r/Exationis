@@ -1,0 +1,171 @@
+﻿<div class="card-1" ng-app="EditTest" ng-cloak>
+    <div ng-controller="TestAPIController" id="testapi" ng-init="GetTest(@Model)">
+        <div ng-if="errorTest" ng-bind="errorTest"></div>
+        <div ng-if="errorTest == null" class="col-md-12 margin_bot_15">
+            <!-- Question Title -->
+            <div class="col-md-12">
+                <h2 class="pull-left" ng-show="!isEdit">
+                    Test - <span ng-bind="test.Name"></span>
+                    Limitation - <span ng-bind="test.Limitation"></span>
+                    <img class="margin_bot_15 icon_hover" src="/Content/Images/edit.png" ng-click="editTestTitle()" title="Edit" />
+                </h2>
+                <h2 class="pull-left" ng-show="isEdit">
+                    Test - <input class="shadowQ" style="font-size:inherit; width:150px" type="text" ng-model="test.Name" />
+                    Limitation - <input class="shadowQ" style="width: 150px;font-size:inherit" type="text" ng-model="test.Limitation" />
+                    <img class="margin_bot_15 icon_hover" src="/Content/Images/save.png" ng-click="saveTest()" title="Save" />
+                </h2>
+                <h2 class="pull-right">Evaluation - <span ng-bind="evaluation()"></span></h2>
+            </div>
+            <div class="clearfix"></div>
+            <!---------------------------------------------->
+
+            <input type="hidden" id="test_id" value="@Model" />
+            <!-- Question index buttons -->
+            <div class="col-md-2">
+                <div ng-repeat="q in questions">
+                    <div class="button raised blue" id="button{{$index}}" ng-click="getQuestion(q, $index + 1)">{{'Qeustion ' + ($index + 1)}}</div>
+                </div>
+            </div>
+            <!---------------------------------------------->
+
+            <div ng-if="test.EditAccess">
+                @{Html.RenderPartial("~/Views/Partial/Questions_edit_enable_en.cshtml");}
+            </div>
+
+            <div ng-if="!test.EditAccess">
+                @{Html.RenderPartial("~/Views/Partial/Questions_edit_disable_en.cshtml");}
+            </div>
+
+            <!-- Modal for uploading image to question -->
+            @*<div id="uploadModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="margin-top:200px">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 style="text-align:center"><span>Upload Image </span></h2>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <input type="file" id="imageUpload" multiple />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="pull-left"><button class="btn btn-default" ng-click="imageUpload()">Upload</button> </div>
+                                <div class="pull-right"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <!---------------------------------------------->
+            <!-- Modal for error to uploading image -->
+            <div id="uploadError" class="modal fade" role="dialog">
+                <div class="modal-dialog center-block">
+                    <div class="modal-body">
+                        <div>
+                            <div class="alert alert-danger" ng-bind="question.uploadError"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---------------------------------------------->
+            <!-- Modal for selected image -->
+            <div id="imageModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-body">
+                        <div>
+                            <img ng-src="https://drive.google.com/uc?export=view&id={{imageModal.ImageID}}" class="pull-left" style="width:92%" />
+                            <img ng-src="/Content/Images/delete.png" class="pull-right" ng-click="deleteImage()" title="Delete" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---------------------------------------------->
+            <!-- Modal for adding question -->
+            <div id="questionForm" class="modal fade" role="dialog">
+                <div class="modal-dialog" style="width:800px">
+                    <div class="modal_body" style="width:800px">
+                        <div class="modal_header col-md-12" style="width:800px">
+                            <h2 class="text-center">
+                                <span>New Question </span>
+                                Points - <input type="text" class="points_form" ng-model="question_form.Points" />
+                            </h2>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="modal_body" style="width:800px">
+                            <div> <textarea class="shadowQ col-md-12" style="background-color:white;height:55px" ng-model="question_form.Question"></textarea> </div>
+                            <div class="clearfix"></div>
+
+                            <h2 class="text-center">Answers</h2>
+                            <div class="col-md-12">
+                                <div class="col-md-12 margin_top_30">
+                                    <div class="col-md-1"><h3>a)</h3></div>
+                                    <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer: ! question_form.Correct[0]}" ng-model="question_form.Answers[0]" style="background-color:white"></textarea>  </div>
+                                    <div class="col-md-4">
+                                        <label class="switch margin_top_15">
+                                            <input class="off-screen" type="checkbox" ng-model="question_form.Correct[0]" />
+                                            <span class="switch__off-text">wrong</span>
+                                            <span class="switch__lever"></span>
+                                            <span class="switch__on-text">correct</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 margin_top_30">
+                                    <div class="col-md-1"><h3>b)</h3></div>
+                                    <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer: ! question_form.Correct[1]}" ng-model=" question_form.answers[1]" style="background-color:white"></textarea>  </div>
+                                    <div class="col-md-4">
+                                        <label class="switch margin_top_15">
+                                            <input class="off-screen" type="checkbox" ng-model="question_form.Correct[1]" />
+                                            <span class="switch__off-text">wrong</span>
+                                            <span class="switch__lever"></span>
+                                            <span class="switch__on-text">correct</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 margin_top_30">
+                                    <div class="col-md-1"><h3>c)</h3></div>
+                                    <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer: ! question_form.Correct[2]}" ng-model="question_form.Answers[2]" style="background-color:white"></textarea>  </div>
+                                    <div class="col-md-4">
+                                        <label class="switch margin_top_15">
+                                            <input class="off-screen" type="checkbox" ng-model="question_form.Correct[2]" />
+                                            <span class="switch__off-text">wrong</span>
+                                            <span class="switch__lever"></span>
+                                            <span class="switch__on-text">correct</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 margin_top_30">
+                                    <div class="col-md-1"><h3>d)</h3></div>
+                                    <div> <textarea class="shadowQ col-md-7" ng-class="{wrongAnswer:  !question_form.Correct[3]}" ng-model="question_form.Answers[3]" style="background-color:white"></textarea>  </div>
+                                    <div class="col-md-4">
+                                        <label class="switch margin_top_15">
+                                            <input class="off-screen" type="checkbox" ng-model="question_form.Correct[3]" />
+                                            <span class="switch__off-text">wrong</span>
+                                            <span class="switch__lever"></span>
+                                            <span class="switch__on-text">correct</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal_footer margin_top_15" style="width:800px">
+                            <div>
+                                <div class="col-md-3"><button id="add_question" class="btn btn-default pull-left" style="border-radius: 0px; background-color: #e5ebf1" ng-click="addQuestion(@Model)"> Add Question</button> </div>
+                                <div class="alert-danger col-md-6 text-center" style="padding: 5px; background-color: #e5ebf1; color: #507299;" ng-show="add_error" ng-bind="add_error"></div>
+                                <div class="col-md-3 pull-right"><button type="button" class="btn btn-default pull-right" style="border-radius: 0px; background-color: #e5ebf1" data-dismiss="modal">Close</button></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------------->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

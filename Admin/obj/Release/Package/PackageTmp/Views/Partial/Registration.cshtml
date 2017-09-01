@@ -1,0 +1,78 @@
+﻿@Scripts.Render("~/Scripts/Site/Account.js")
+@Styles.Render("~/Content/Validation.css")
+
+<form name="form1" style="margin-top:20px">
+        <div class="group">
+            <input type="text" class="input_text" name="Login" ng-model="registration_form.Login" ng-pattern="patterns.Login" ng-change="isLoginExist()" ng-keyup="" required />
+            <label class="label"> Login </label>
+            <img ng-show="!form1.Login.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+            <img ng-show="form1.Login.$dirty && form1.Login.$valid && errorLogin == ''" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+            <img ng-show="form1.Login.$dirty && form1.Login.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Air, AGumenyuk"></>
+            <img ng-show="errorLogin" src="~/Content/Images/attention_orange.png" data-toggle="tooltip" data-placement="right" data-original-title="{{errorLogin}}"></>
+        </div>
+
+        <div class="group">
+            <input type="text" class="input_text" name="Email" ng-model="registration_form.Email" ng-pattern="patterns.Email" ng-change="isEmailExist()" required />
+            <label class="label"> Email </label>
+            <img ng-show="!form1.Email.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+            <img ng-show="form1.Email.$dirty && form1.Email.$valid && errorEmail == ''" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+            <img ng-show="form1.Email.$dirty && form1.Email.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="simple@gmail.com"></>
+            <img ng-show="errorEmail" src="~/Content/Images/attention_orange.png" data-toggle="tooltip" data-placement="right" data-original-title="{{errorEmail}}"></>
+        </div>
+
+        <div class="group">
+            <input type="text" class="input_text" name="Name" ng-model="registration_form.Name" ng-pattern="patterns.Name" required />
+            <label class="label"> Name </label>
+            <img ng-show="!form1.Name.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+            <img ng-show="form1.Name.$dirty && form1.Name.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+            <img ng-show="form1.Name.$dirty && form1.Name.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Andrew, Diana"></>
+        </div>
+
+        <div class="group">
+            <input type="text" class="input_text" name="SurName" ng-model="registration_form.SurName" ng-pattern="patterns.SurName" required />
+            <label class="label"> SurName </label>
+            <img ng-show="!form1.SurName.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+            <img ng-show="form1.SurName.$dirty && form1.SurName.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+            <img ng-show="form1.SurName.$dirty && form1.SurName.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Gumenyuk, Pavlovich"></>
+        </div>
+
+        <div class="group">
+            <input type="text" class="input_text" name="MiddleName" ng-model="registration_form.MiddleName" ng-pattern="patterns.MiddleName" required />
+            <label class="label"> MiddleName </label>
+            <img ng-show="!form1.MiddleName.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+            <img ng-show="form1.MiddleName.$dirty && form1.MiddleName.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+            <img ng-show="form1.MiddleName.$dirty && form1.MiddleName.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Borisovich, Sergeyevna"></>
+        </div>
+
+        <div class="group">
+            <input type="password" class="input_text" name="Password" ng-model="registration_form.Password" required />
+            <label class="label"> Password </label>
+            <img ng-show="!form1.Password.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+            <img ng-show="form1.Password.$dirty && form1.Password.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+            <img ng-show="form1.Password.$dirty && form1.Password.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Any password"></>
+        </div>
+
+        <div class="group">
+            <input type="password" class="input_text" name="ConfirmPassword" ng-model="registration_form.ConfirmPassword" ng-pattern="{{registration_form.Password}}" required />
+            <label class="label"> ConfirmPassword </label>
+            <img ng-show="!form1.ConfirmPassword.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+            <img ng-show="form1.ConfirmPassword.$dirty && form1.ConfirmPassword.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+            <img ng-show="form1.ConfirmPassword.$dirty && form1.ConfirmPassword.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="Password should match"></>
+        </div>
+
+        <div class="group">
+            <select class="input_text" ng-model="registration_form.FacultyID" required>
+                <option class="label" value="">Faculty</option>
+                <option ng-repeat="f in registration_form.Facultys" value="{{f.ID}}">{{f.Name}}</option>
+            </select>
+        </div>
+
+    <div class="group">
+        <input type="text" class="input_text" name="KeyWord" ng-model="registration_form.KeyWord" ng-pattern="{{registration_form.KeyWord}}" required />
+        <label class="label"> KeyWord </label>
+        <img ng-show="!form1.KeyWord.$dirty" src="~/Content/Images/attention_blue.png" data-toggle="tooltip" data-placement="right" title="Required"></>
+        <img ng-show="form1.KeyWord.$dirty && form1.KeyWord.$valid" src="~/Content/Images/attention_green.png" data-toggle="tooltip" data-placement="right" title="Valid"></>
+        <img ng-show="form1.KeyWord.$dirty && form1.KeyWord.$invalid" src="~/Content/Images/attention_red.png" data-toggle="tooltip" data-placement="right" title="KeyWork"></>
+    </div>
+</form>
+

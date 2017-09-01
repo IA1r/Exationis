@@ -1,0 +1,11 @@
+﻿@using Core.Common;
+@{
+    ViewBag.Title = "Charts";
+}
+@Scripts.Render("~/Scripts/Site/Charts_" + SessionManager.LoggedInUser.Language.ISO + ".js")
+@Styles.Render("~/Content/Styles/Charts.css")
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+@{
+    Html.RenderPartial("~/Views/Partial/Charts_" + SessionManager.LoggedInUser.Language.ISO + ".cshtml");
+}

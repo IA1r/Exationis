@@ -1,0 +1,81 @@
+﻿@model int
+
+<div class="card-1" ng-app="Testing" ng-cloak>
+    <div ng-controller="TestAPIController" ng-init="GetTest(@Model)">
+        <div ng-if="error != null" ng-bind="error"></div>
+        <div ng-if="successful != null" ng-bind="successful"></div>
+        <div class="col-md-12 margin_bot_15" ng-if="error == null && successful == null">
+            <div class="col-md-12">
+                <h2 class="col-md-9">
+                    Test - <span ng-bind="test.Name"></span>
+                    Limitation - <span ng-bind="test.Limitation"></span>
+                    Evaluation - <span ng-bind="test.Evaluation"></span>
+                </h2>
+                <h2 class="col-md-3 text-right" id="clock"></h2>
+            </div>
+            <div class="clearfix"></div>
+            <div class="pull-left col-md-2">
+                <div ng-repeat="q in questions">
+                    <div class="button blue raised  pull-left"  id="button{{$index}}" ng-click="getQuestion($index, q)">{{'Question ' + ($index + 1)}}</div>
+                    <div class="pull-right margin_top_15 margin_right_10" ng-show="q.Answer[0].Result || q.Answer[1].Result || q.Answer[2].Result || q.Answer[3].Result" id="flag{{$index}}"><img src="/Content/Images/select.png" /></div>
+                </div>
+            </div>
+            <div class="pull-left col-md-9">
+                <div ng-show="show_question">
+                    <h2 class="text-center">Question</h2>
+                    <div class="col-md-12"> <span class="shadowQ" ng-bind="question.Content" ng-model="question.Content"></span> </div>
+                    <div class="clearfix"></div>
+
+                    <div ng-show="question.images">
+                        <div class="grid pop col-md-12">
+                            <img ng-repeat="im in question.images" ng-src="https://drive.google.com/uc?export=view&id={{im.ImageID}}" width="200" class="grid-item" ng-click="showImageModal(im)" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <h2 class="text-center margin_top_40">Answers</h2>
+                    <div class="col-md-12">
+                        <div class="col-md-12 margin_top_15">
+                            <div class="col-md-1"><h3>a)</h3></div>
+                            <div class="col-md-8 margin_top_15"> <span class="neutralAnswer" ng-bind="question.Answer[0].Content"></span>  </div>
+                            <div class="col-md-3 margin_top_15">
+                                <input type="checkbox" id="cb1" ng-model="question.Answer[0].Result" />
+                                <label for="cb1" class="check-box"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 margin_top_15">
+                            <div class="col-md-1"><h3>b)</h3></div>
+                            <div class="col-md-8 margin_top_15"> <span class="neutralAnswer" ng-bind="question.Answer[1].Content"></span>  </div>
+                            <div class="col-md-3 margin_top_15">
+                                <input type="checkbox" id="cb2" ng-model="question.Answer[1].Result" />
+                                <label for="cb2" class="check-box"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 margin_top_15">
+                            <div class="col-md-1"><h3>c)</h3></div>
+                            <div class="col-md-8 margin_top_15"> <span class="neutralAnswer" ng-bind="question.Answer[2].Content"></span>  </div>
+                            <div class="col-md-3 margin_top_15">
+                                <input type="checkbox" id="cb3" ng-model="question.Answer[2].Result" />
+                                <label for="cb3" class="check-box"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 margin_top_15">
+                            <div class="col-md-1"><h3>d)</h3></div>
+                            <div class="col-md-8 margin_top_15"> <span class="neutralAnswer" ng-bind="question.Answer[3].Content"></span>  </div>
+                            <div class="col-md-3 margin_top_15">
+                                <input type="checkbox" id="cb4" ng-model="question.Answer[3].Result" />
+                                <label for="cb4" class="check-box"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-danger col-md-8 text-center col-md-offset-1" style="padding: 5px; background-color: #e5ebf1; color: #507299;" ng-show="nullResults" ng-bind="nullResults"></div>
+                    <div class="pull-right"><input type="button" class="btn btn-default pull-right" style="border-radius: 0px; background-color: #e5ebf1" ng-click="sendResult(@Model)" value="Send" /> </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

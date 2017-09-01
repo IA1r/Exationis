@@ -1,0 +1,15 @@
+﻿@using Core.Common;
+@{
+    ViewBag.Title = "Disciplines";
+}
+@Scripts.Render("~/Scripts/Site/Account.js")
+@Scripts.Render("~/Scripts/Site/Discipline.js")
+@Styles.Render("~/Content/Styles/Disciplines.css")
+@Scripts.Render("~/Scripts/Site/AddTest.js")
+@Styles.Render("~/Content/Validation.css")
+@Styles.Render("~/Content/Checkbox_20.css")
+
+@if (SessionManager.LoggedInUser != null)
+{
+    Html.RenderPartial("~/Views/Partial/Disciplines_" + SessionManager.LoggedInUser.Language.ISO + ".cshtml");
+}

@@ -1,0 +1,126 @@
+﻿<div ng-app="Result" ng-cloak>
+    <div ng-controller="ResultAPIController" ng-init="GetDisciplines()" class="col-md-12">
+        <div ng-if="tests.length == 0">У цій дисципліні немає пройдених тестів</div>
+        <div ng-if="errorTests" ng-bind="errorTests"></div>
+        <div ng-if="isExist" ng-bind="isExist"></div>
+        <div>
+
+            <div class="card-1">
+                <div class="col-md-12">
+                    <h2>Результати студентів</h2>
+                    <h3 class="pull-left">Дисципліна - </h3>
+                    <select class="input_text pull-left margin_left_5 margin_top_15" ng-change="GetTests()" ng-model="DisID" required>
+                        <option class="" value="">--Вибіріть дисципліну--</option>
+                        <optgroup ng-repeat="(key, value) in disciplines | groupBy: 'Course'" label="Course - {{key}}">
+                            <option ng-repeat="d in value" value="{{d.ID}}">{{d.Name}}</option>
+                        </optgroup>
+                    </select>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div ng-show="tests" class="col-md-12">
+                    <div class="form-group">
+                        <h2>Тести</h2>
+                        <div class="input-group">
+                            <input type="text" class="input_text" placeholder="Пошук тесту" ng-model="searchTest">
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td style="border-right: solid 1px lightgrey"><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">Назва</a></td>
+                                <td style="border-right: solid 1px lightgrey"><a href="#" ng-click="sortType = 'Limitation'; sortReverse = !sortReverse">Обмеження</a></td>
+                                <td><a href="#" ng-click="sortType = 'Evaluation'; sortReverse = !sortReverse">Оцінка</a></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="item_hover" ng-repeat="t in tests | orderBy:sortType:sortReverse | filter:searchTest | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" ng-click="GetShortResult(t.ID)">
+                                <td style="border-right: solid 1px lightgrey">{{t.Name}}</a></td>
+                                <td style="border-right: solid 1px lightgrey">{{ t.Limitation }}</td>
+                                <td>{{ t.Evaluation }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination page="currentPage" class="pull-right" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" ng-model="currentPage"></pagination>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div ng-show="results" class="card-1 margin_top_30">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h2>Результати</h2>
+                        <div class="input-group">
+                            <input type="text" class="input_text" placeholder="Пошук результату" ng-model="searchResult">
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td style="border-right: solid 1px lightgrey"><a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">Iм'я</a></td>
+                                <td style="border-right: solid 1px lightgrey"><a href="#" ng-click="sortType = 'SurName'; sortReverse = !sortReverse">Прізвище</a></td>
+                                <td style="border-right: solid 1px lightgrey"><a href="#" ng-click="sortType = 'Points'; sortReverse = !sortReverse">Бали</a></td>
+                                <td><a href="#" ng-click="sortType = 'Date'; sortReverse = !sortReverse">Дата</a></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="item_hover" ng-repeat="r in results | orderBy:sortType:sortReverse | filter:searchResult | startFrom:(currentPage_1-1)*entryLimit_1 | limitTo:entryLimit_1" ng-click="GetFullResult(r)" data-toggle="modal" data-target="#fullresult">
+                                <td style="border-right: solid 1px lightgrey">{{r.Name}}</td>
+                                <td style="border-right: solid 1px lightgrey">{{ r.SurName }}</td>
+                                <td style="border-right: solid 1px lightgrey">{{ r.Points }}</td>
+                                <td class="text-center" ng-bind="r.Date | date:'dd/MM/yyyy'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination class="pull-right" page="currentPage_1" max-size="noOfPages_1" total-items="totalItems_1" items-per-page="entryLimit_1" ng-model="currentPage_1"></pagination>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <!-- Modal -->
+            <div id="fullresult" class="modal fade">
+                <div class="modal-dialog" style="width:1000px">
+                    <!-- Modal content-->
+                    <div class="modal_body" style="width:1000px">
+                        <div class="modal_header col-md-12" style="width:1000px">
+                            <h2>
+                                <span class="col-md-8">
+                                    Детально для:
+                                    <span ng-bind="user.Name"></span>
+                                    <span ng-bind="user.SurName"></span>
+                                </span>
+
+                                <span class="col-md-4>
+                                    <span class="pull-right">
+                                        Бали:
+                                        <span ng-bind="user.Points"></span> /
+                                        <span ng-bind="user.Evaluation"></span>
+                                    </span>
+                                </span>
+                            </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div>
+                            <div class="modal_body col-md-12" style="width:1000px">
+                                @Html.Partial("~/Views/Partial/FullResult_uk.cshtml")
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="modal_footer col-md-12" style="width:1000px">
+                                <div>
+                                    <div class="pull-right"><button type="button" id="btn_close" class="btn btn-default pull-right" style="border-radius: 0px; background-color: #e5ebf1" data-dismiss="modal">Закрити</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

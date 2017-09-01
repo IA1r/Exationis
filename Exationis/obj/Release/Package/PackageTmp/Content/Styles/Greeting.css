@@ -1,0 +1,13 @@
+﻿.menu_link {
+    padding: 5px;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+
+    .menu_link:hover {
+        background-color: #d1d9e0;
+    }
+
+ .margin_top_8{
+     margin-top:8px;
+ }

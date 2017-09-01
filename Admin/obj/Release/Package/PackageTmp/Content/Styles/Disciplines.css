@@ -1,0 +1,73 @@
+﻿.card {
+    border-radius: 2px;
+    margin: 1rem;
+    padding: 3px;
+}
+
+.card-1 {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    background: #fff;
+}
+
+.card-2 {
+    background-color: #fff;
+    border-radius: 2px;
+    margin: 1rem;
+    padding: 3px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.input_text {
+    border: 0;
+    background: white no-repeat;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #507299, #507299), linear-gradient(to bottom, silver, silver);
+    background-size: 0 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    font-size: 18px;
+}
+
+    .input_text:focus {
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+    }
+
+.label {
+    color: gray !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    position: absolute;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+    margin-left: -38%;
+}
+
+/*active state*/
+input:focus ~ .label, input:valid ~ .label {
+    top: -20px;
+    font-size: 14px !important;
+    color: #5264AE;
+}
+
+.margin_bot_10 {
+    margin-bottom: 10px;
+}
+
+.cust_color {
+    color: #285473;
+    font-size:15px;
+    padding:5px;
+}
+
+    .cust_color:hover {
+        background: #e1e5eb;
+        cursor: pointer;
+    }
+
+.border_right_1{
+    border-right:solid 1px lightgrey;
+}
